@@ -33,6 +33,13 @@ def load_leaderboard():
         leaderboard = {}
     return leaderboard
 
+def load_paragraph():
+    # Load a random paragraph for the typing test
+    with open('typing_paragraphs.json', 'r') as f:
+        paragraphs_data = json.load(f)
+    return random.choice(paragraphs_data['paragraphs'])
+
+
 def main():
     print("Welcome to Terminal Typing Master!")
 
