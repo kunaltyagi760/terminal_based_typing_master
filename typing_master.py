@@ -15,8 +15,10 @@ def main():
 
         if choice == '1':
             # Start Typing Test
-            category = input("Enter the typing category: ")  # You can add more categories
-            words = load_words_from_json(category)
+            paragraph = load_paragraph()
+            print("\nType the following paragraph:\n")
+            print(paragraph)
+            input("\nPress Enter when you are ready to start typing...")
 
             start_time = time.time()
             user_input = get_user_input()
@@ -27,7 +29,9 @@ def main():
             words_typed = len(user_input.split())
             wpm = int((words_typed / time_taken) * 60)
 
-            print(f"\nYour WPM: {wpm}")
+            print(f"\nTime Taken: {round(time_taken)}")
+            print(f"Words Typed: {words_typed}")
+            print(f"Your WPM: {wpm}")
             update_leaderboard(username, wpm)
 
         elif choice == '2':
@@ -42,4 +46,5 @@ def main():
         else:
             print("Invalid choice. Please enter 1, 2, or 3.")
 
-main()
+if __name__ == "__main__":
+    main()
