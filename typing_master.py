@@ -39,6 +39,9 @@ def load_paragraph():
         paragraphs_data = json.load(f)
     return random.choice(paragraphs_data['paragraphs'])
 
+def get_user_input():
+    # Capture user input from the terminal
+    return input()
 
 def main():
     print("Welcome to Terminal Typing Master!")
