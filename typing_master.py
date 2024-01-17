@@ -1,3 +1,38 @@
+import random
+import time
+import json
+
+
+def update_leaderboard(username, wpm):
+    # Load existing leaderboard
+    leaderboard = load_leaderboard()
+
+    # Update or add user to the leaderboard
+    leaderboard[username] = wpm
+
+    # Sort the leaderboard by WPM in descending order
+    sorted_leaderboard = dict(sorted(leaderboard.items(), key=lambda item: item[1], reverse=False))
+
+    # Save the updated leaderboard to the JSON file
+    with open('leaderboard.json', 'w') as f:
+        json.dump(sorted_leaderboard, f)
+
+def show_leaderboard():
+    # Load and display the leaderboard
+    leaderboard = load_leaderboard()
+    print("\nLeaderboard:")
+    for i, (user, wpm) in enumerate(leaderboard.items(), start=1):
+        print(f"{i}. {user}: {wpm} WPM")
+
+def load_leaderboard():
+    # Load leaderboard from JSON file or create an empty one
+    try:
+        with open('leaderboard.json', 'r') as f:
+            leaderboard = json.load(f)
+    except FileNotFoundError:
+        leaderboard = {}
+    return leaderboard
+
 def main():
     print("Welcome to Terminal Typing Master!")
 
